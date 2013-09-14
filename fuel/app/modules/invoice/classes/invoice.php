@@ -10,13 +10,14 @@ class Invoice
     const PDF  = "pdf";
 
     protected $_id;
-    protected $_clientID;
-    protected $_date;
+    protected $_client_id;
+    protected $_created;
     protected $_status;
     protected $_items;
-    protected $_cost;
-    protected $_totalCost;
+    protected $_value;
+    protected $_totalValue;
     protected $_payments;
+    protected $_totalPaid;
     protected $_remaining;
     protected $_dueDate;
 
@@ -115,25 +116,44 @@ class Invoice
         }
 
         $this->_save();
+        return $this;
     }
 
     // Creates an invoice from the given data
     protected function _create($content)
     {
-
+        // Create a blank invoice
+        $this->_id = Model_Invoice::createInvoice();
+        $this->_import();
+        return $this;
     }
 
     // Import the data from the database into the class
     protected function _import()
     {
+        $loadedInvoice = Model_Invoice::loadInvoice($this->_id);
 
+        $this->_client_id   = $loadedInvoice['client_id'];
+        $this->_created     = $loadedInvoice['created'];
+        $this->_status      = $loadedInvoice['status'];
+        $this->_value       = $loadedInvoice['value'];
+        $this->_totalValue  = $loadedInvoice['totalValue'];
+        $this->_totalPaid   = $loadedInvoice['totalPaid'];
+        $this->_dueDate     = $loadedInvoice['dueDate'];
+
+        return $this;
     }
 
     // Saves any updates to the database
     protected function _save()
     {
-
+        Model_Invoice::saveInvoice($this->_id, $this->generate(Invoice::ARR));
+        return $this;
     }
+
+
+    // *****************
+    // Generate Methods
 
     // Return the invoice in formatted HTML
     protected function _returnHTML()
@@ -144,7 +164,15 @@ class Invoice
     // Return the invoice in Array format
     protected function _returnArray()
     {
-        return Array();
+        return Array(
+            'client_id'  => $this->_client_id,
+            'created'    => $this->_created,
+            'status'     => $this->_status,
+            'value'      => $this->_value,
+            'totalValue' => $this->_totalValue,
+            'totalPaid'  => $this->_totalPaid,
+            'dueDate'    => $this->_dueDate,
+        );
     }
 
     // Return the filename of a generated PDF
@@ -152,6 +180,7 @@ class Invoice
     {
         return "";
     }
+
 
     // *****************
     // Load Methods
