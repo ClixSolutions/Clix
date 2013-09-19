@@ -24,8 +24,23 @@ namespace Fuel\Tasks;
  * @author		Phil Sturgeon
  */
 
+
 class Robots
 {
+
+
+    public static function Test_CDR_Import()
+    {
+
+        \Module::load('CDRImport');
+
+        $imported = new \CDRImport\Cdr('test.csv');
+
+
+        print_r($imported);
+
+    }
+
 
 	/**
 	 * This method gets ran when a valid method name is not used in the command.
