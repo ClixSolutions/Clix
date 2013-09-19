@@ -104,13 +104,14 @@ class Cdr
                     'number_presented' => $data['Number presented'],
                     'number_dialled'   => $data['Number dialled'],
                     'prefix'           => $data['Prefix'],
-                    'cost'             => $data['Cost (pounds)'],
+                    'cost'             => number_format($data['Cost (pounds)'],10),
+                    'client_cost'      => number_format(ceil(($data['Cost (pounds)']*100))/100,2),
                 ));
                 $totalCost = ($totalCost + $data['Cost (pounds)']);
             }
         }
         $this->_callsMade = ($recordNumber -1);
-        $this->_totalCost = $totalCost;
+        $this->_totalCost = number_format($totalCost,10);
         $this->_save();
 
         return $this;
