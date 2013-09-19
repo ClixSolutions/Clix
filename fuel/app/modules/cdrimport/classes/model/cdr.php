@@ -36,7 +36,15 @@ class Model_Cdr
 
     public static function Add_CDR_Record($data=null)
     {
-
+        if (is_null($file))
+        {
+            throw \Exception("No CDR Content");
+        }
+        else
+        {
+            list($insert_id, $rows_affected) = \DB::insert('cdr_content')->set($data)->execute();
+            return $insert_id;
+        }
     }
 
 
