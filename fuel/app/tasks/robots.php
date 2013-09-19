@@ -28,17 +28,62 @@ namespace Fuel\Tasks;
 class Robots
 {
 
+// 19 PBX 20, 21 Diallers
+
 
     public static function Test_CDR_Import($filename)
     {
+        // Make sure we have a good enough memory limit and the Import module is loaded
         ini_set('memory_limit','512M');
-
         \Module::load('CDRImport');
 
-        $imported = new \CDRImport\Cdr($filename);
 
+        $hostname = "{imap.gmail.com:993/imap/ssl}INBOX";
+        $username = "cdr@clixsolutions.co.uk";
+        $password = "Clix2013";
 
-        print_r($imported);
+        $inbox = \imap_open($hostname, $username, $password) or die("No imap to gmail connection");
+        $emails = \imap_search($inbox, "ALL");
+
+        if ($emails)
+        {
+            rsort($emails);
+            foreach ($emails as $email_number)
+            {
+                $overview = imap_fetch_overview($inbox,$email_number,0);
+                $message = imap_fetchbody($inbox,$email_number,2);
+                print $overview[0]->subject . "/n";
+            }
+        }
+
+        /*
+
+        // Open the ZIP file
+        $zip = new \ZipArchive();
+        $x = $zip->open(DOCROOT."public/uploads/cdr/".$filename);
+
+        if ($x === true)
+        {
+            // Extract the csv from the zip file
+            $zip->extractTo(DOCROOT."public/uploads/cdr/", array("tmp/Daily_CDRs.csv"));
+            $zip->close();
+
+            // Import the csv file
+            $imported = new \CDRImport\Cdr("tmp/Daily_CDRs.csv");
+
+            // Delete the files that we extracted
+            \File::delete_dir(DOCROOT."public/uploads/cdr/tmp/", true, true);
+
+            // E-Mail a completed notification
+            print_r($imported);
+        }
+        else
+        {
+            // Throw an error
+            throw new \Exception("Zip File Failed");
+        }
+
+        */
 
     }
 
