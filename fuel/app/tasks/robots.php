@@ -52,7 +52,7 @@ class Robots
             {
                 $overview = imap_fetch_overview($inbox,$email_number,0);
                 $message = imap_fetchbody($inbox,$email_number,2);
-                print $overview[0]->subject . "/n";
+                print $overview[0]->subject . "\n";
             }
         }
 
