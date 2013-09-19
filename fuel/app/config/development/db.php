@@ -6,9 +6,9 @@
 return array(
 	'default' => array(
 		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=clix',
-			'username'   => 'clix',
-			'password'   => 'clix',
+			'dsn'        => 'mysql:host=localhost;dbname=clix_clix',
+			'username'   => 'clix_clix',
+			'password'   => '%A{ea=m^{45q',
 		),
 	),
 );
