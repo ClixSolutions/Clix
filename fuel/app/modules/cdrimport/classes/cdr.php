@@ -66,7 +66,7 @@ class Cdr
 
         $email->priority(\Email::P_HIGH);
 
-        $email->subject('New CDR Imported');
+        $email->subject('New CDR Imported - '.date("d/m/Y", strtotime($this->_received)));
 
 
         $email->html_body(\View::forge('emails/importcomplete', array(
