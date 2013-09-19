@@ -32,6 +32,7 @@ class Cdr
     public function statusImportComplete()
     {
         $this->_setStatus(3);
+        $this->_importCompleteEMail();
         return $this;
     }
 
@@ -41,6 +42,41 @@ class Cdr
         return $this;
     }
 
+    public function setDate($date)
+    {
+        $this->_received = $date;
+        $this->_save();
+    }
+
+    public function importCompleteEMail()
+    {
+        $this->_importCompleteEMail();
+
+    }
+
+    protected function _importCompleteEMail()
+    {
+        $email = \Email::forge();
+
+        $email->from('noreply@clixsolutions.co.uk', 'Clix Solutions');
+
+        $email->to(array(
+            'cdrcomplete@clixsolutions.co.uk'  => 'CDR Complete',
+        ));
+
+        $email->priority(\Email::P_HIGH);
+
+        $email->subject('New CDR Imported');
+
+
+        $email->html_body(\View::forge('emails/importcomplete', array(
+            'cdrDate'   => $this->_received,
+            'callsMade' => $this->_callsMade,
+            'totalCost' => $this->_totalCost,
+        )));
+
+        $email->send();
+    }
 
 
     // *****************
@@ -134,11 +170,12 @@ class Cdr
             $this->_fileName = $file;
             $this->statusNew();
             $this->_id = $newID;
+            $this->_received = $existingID;
             $this->_import();
         }
         else
         {
-            $this->_id = $id;
+            $this->_id = $existingID;
             $this->load();
         }
     }
