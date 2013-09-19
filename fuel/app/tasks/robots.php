@@ -29,12 +29,12 @@ class Robots
 {
 
 
-    public static function Test_CDR_Import()
+    public static function Test_CDR_Import($filename)
     {
 
         \Module::load('CDRImport');
 
-        $imported = new \CDRImport\Cdr('test.csv');
+        $imported = new \CDRImport\Cdr($filename);
 
 
         print_r($imported);
