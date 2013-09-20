@@ -12,6 +12,11 @@ return array(
 			array(
 				0 => '001_create_invoice',
 			),
+			'cdrimport' => 
+			array(
+				0 => '001_create_cdr',
+				1 => '002_create_cdr_content',
+			),
 		),
 		'package' => 
 		array(
