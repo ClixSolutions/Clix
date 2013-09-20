@@ -17,6 +17,12 @@ return array(
 				0 => '001_create_cdr',
 				1 => '002_create_cdr_content',
 			),
+			'clients' => 
+			array(
+				0 => '001_create_client',
+				1 => '002_create_client_server',
+				2 => '003_create_client_sip_rate',
+			),
 		),
 		'package' => 
 		array(
