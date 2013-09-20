@@ -28,18 +28,9 @@ namespace Fuel\Tasks;
 class Robots
 {
 
-
-    public static function Test_CDR_Import()
-    {
-
-        \Module::load('CDRImport');
-
-        $imported = new \CDRImport\Cdr('test.csv');
+// 19 PBX 20, 21 Diallers
 
 
-        print_r($imported);
-
-    }
 
 
 	/**

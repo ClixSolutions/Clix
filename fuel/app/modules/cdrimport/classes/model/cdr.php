@@ -36,7 +36,7 @@ class Model_Cdr
 
     public static function Add_CDR_Record($data=null)
     {
-
+        list($insert_id, $rows_affected) = \DB::insert('cdr_content')->set($data)->execute();
     }
 
 

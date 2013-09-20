@@ -10,7 +10,7 @@ class Create_cdr
             'id'                => array('constraint' => 11,  'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
             'received'          => array('type' => 'date'),
             'calls_made'        => array('constraint' => 11, 'type' => 'int'),
-            'total_cost'        => array('constraint' => '7,2', 'type' => 'float'),
+            'total_cost'        => array('constraint' => '10,5', 'type' => 'float'),
             'status'            => array('constraint' => 11, 'type' => 'int'),
         ), array('id'));
     }

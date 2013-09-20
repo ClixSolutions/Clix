@@ -17,7 +17,8 @@ class Create_cdr_content
             'number_presented'  => array('constraint' => '255', 'type' => 'varchar'),
             'number_dialled'    => array('constraint' => '255', 'type' => 'varchar'),
             'prefix'            => array('constraint' => 11, 'type' => 'int'),
-            'cost'              => array('constraint' => '7,2', 'type' => 'float'),
+            'cost'              => array('constraint' => '10,5', 'type' => 'float'),
+            'client_cost'       => array('constraint' => '10,2', 'type' => 'float'),
         ), array('id'));
     }
 
