@@ -10,8 +10,7 @@ class Model_Bonus
         $results = \DB::select(array())
             ->from('bonus')
             ->where('status', $status)
-            ->execute()
-            ->as_array();
+            ->execute();
 
         return $results;
     }
