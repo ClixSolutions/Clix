@@ -53,27 +53,27 @@ class Bonus
 
     public function getExchangeRate($conversion=null)
     {
-        return $this->_getExchangeRate($conversion);
+        return number_format($this->_getExchangeRate($conversion),2);
     }
 
     public function getAssignedCD()
     {
-        return $this->_getAssignedCD();
+        return number_format($this->_getAssignedCD(),2);
     }
 
     public function getAvailableCD()
     {
-        return $this->_getAvailableCD();
+        return number_format($this->_getAvailableCD(),2);
     }
 
     public function getBonusFund()
     {
-        return $this->_getBonusFund();
+        return number_format($this->_getBonusFund(),2);
     }
 
     public function getBonusFundCD()
     {
-        return $this->_getBonusFundCD();
+        return number_format($this->_getBonusFundCD(),2);
     }
 
 
@@ -98,7 +98,7 @@ class Bonus
             }
             else
             {
-                $exchangeRate = ($conversion == Bonus::CD2GBP)
+                $exchangeRate = ($conversion == Bonus::GBP2CD)
                     ? ($this->_getBonusFund() * (0.5  - Bonus::subRate)) / $this->_getBonusFundCD()
                     : $this->_getBonusFundCD() / ($this->_getBonusFund() * (0.5 - Bonus::subRate));
             }
