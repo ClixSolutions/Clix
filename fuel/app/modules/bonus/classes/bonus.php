@@ -68,6 +68,11 @@ class Bonus
 
     public function getBonusFund()
     {
+        return $this->_getBonusFund();
+    }
+
+    public function getBonusFundCD()
+    {
         return $this->_getBonusFundCD();
     }
 
