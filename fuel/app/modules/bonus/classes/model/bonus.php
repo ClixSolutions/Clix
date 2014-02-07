@@ -7,13 +7,11 @@ class Model_Bonus
 
     public static function getCurrentStatuses($status)
     {
-        $results = \DB::select(array('date','user','status','gbp','cd','comments'))
+        $results = \DB::select('*')
             ->from('bonus')
             ->where('status', $status)
             ->execute()
             ->as_array();
-
-        print_r($results);
 
         return (count($results) > 0)
             ? $results
