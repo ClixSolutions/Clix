@@ -166,7 +166,9 @@ class Bonus
         $sum = 0;
         foreach ($array as $single)
         {
-            $sum = $sum + $single[$field];
+            $sum = (isset($single[$field]))
+                ? $sum + $single[$field]
+                : $sum;
         }
         return $sum;
     }
