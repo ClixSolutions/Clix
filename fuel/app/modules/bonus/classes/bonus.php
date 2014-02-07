@@ -151,7 +151,7 @@ class Bonus
     {
         $totalIncoming = $this->_sum('gbp', Model_Bonus::getCurrentStatuses(Bonus::INCOMING));
         $totalOutgoing = $this->_sum('gbp', Model_Bonus::getCurrentStatuses(Bonus::OUTGOING));
-        $this->_bonusFundCD = $totalIncoming - $totalOutgoing;
+        $this->_bonusFund = $totalIncoming - $totalOutgoing;
         return $this;
     }
 

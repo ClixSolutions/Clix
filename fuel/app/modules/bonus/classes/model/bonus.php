@@ -13,6 +13,8 @@ class Model_Bonus
             ->execute()
             ->as_array();
 
+        print_r($results);
+
         return (count($results) > 0)
             ? $results
             : array();
