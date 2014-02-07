@@ -13,7 +13,7 @@ class Controller_Bonus extends \Clients\Controller_Force
     public function action_test()
     {
         $bonus = new Bonus();
-        $bonus->investment(100,100,0,'Starting Balance');
+        $bonus->investment(100,250,0,'Second Test Balance');
     }
 
 }

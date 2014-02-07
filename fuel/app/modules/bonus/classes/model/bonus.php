@@ -20,9 +20,20 @@ class Model_Bonus
 
 
 
-    public static function addTransaction($status, $gbp, $cd, $comments='', $user=null)
+    public static function addTransaction($status, $gbp, $cd, $comments='', $user=0)
     {
+        \DB::insert('bonus')
+            ->set(array(
+                'date'      => date('Y-m-d'),
+                'user'      => $user,
+                'status'    => $status,
+                'gbp'       => $gbp,
+                'cd'        => $cd,
+                'comments'  => $comments,
+            ))
+            ->execute();
 
+        return true;
     }
 
 }

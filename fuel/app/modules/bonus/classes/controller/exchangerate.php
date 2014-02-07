@@ -12,10 +12,6 @@ class Controller_Exchangerate extends \Controller_Rest
 
         return $this->response(array(
             'exchangeRate' => $exchangeRate,
-            'totalBonusFund' => $bonus->getBonusFund(),
-            'totalBonusFundCD' => $bonus->getBonusFundCD(),
-            'assigned' => $bonus->getAssignedCD(),
-            'available' => $bonus->getAvailableCD(),
         ));
     }
 
